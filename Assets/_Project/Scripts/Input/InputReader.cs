@@ -48,6 +48,11 @@ namespace Input
 
         public void OnRotate(InputAction.CallbackContext context)
         {
+            if (context.ReadValue<float>() == 0)
+            {
+                return;
+            }
+
             Rotate?.Invoke(context.ReadValue<float>());
         }
 

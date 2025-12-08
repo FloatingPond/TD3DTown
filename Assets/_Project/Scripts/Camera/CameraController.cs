@@ -10,17 +10,16 @@ namespace _Project.Scripts.Camera
         [SerializeField] private UnityEngine.Camera m_camera;
         [SerializeField] private InputReader m_inputReader;
         
-        [Header("Values")] 
+        [Header("Settings")] 
         [SerializeField] private float m_translateSpeed = 1f;
         [SerializeField] private float m_rotateSpeed = 5f;
         
-        [Header("Zoom")] 
+        [Header("Zoom Settings")] 
         [SerializeField] private float m_zoomSpeed = 1f;
         [SerializeField] private float m_maxZoomIn;
         [SerializeField] private float m_maxZoomOut;
         [SerializeField] private float m_defaultZoom;
-
-        private float m_targetRotationY;
+        
         private bool m_isRotating = false;
 
         private void OnEnable()
@@ -53,8 +52,8 @@ namespace _Project.Scripts.Camera
 
         private void Zoom(float newVal)
         {
-            var zoomDelta = m_zoomSpeed * newVal;
-            var newOrthographicSize = m_camera.orthographicSize + zoomDelta;
+            float zoomDelta = m_zoomSpeed * newVal;
+            float newOrthographicSize = m_camera.orthographicSize + zoomDelta;
             newOrthographicSize = Mathf.Clamp(newOrthographicSize, m_maxZoomIn, m_maxZoomOut);
             m_camera.orthographicSize = newOrthographicSize;
         }
@@ -64,17 +63,18 @@ namespace _Project.Scripts.Camera
             if (m_isRotating)
                 return;
 
-            m_targetRotationY += 90f * Mathf.Sign(input);
-            m_targetRotationY = Mathf.Round(m_targetRotationY / 90f) * 90f; // Ensure it snaps to 90-degree increments
-            StartCoroutine(SmoothRotate());
+            float targetRotationY = transform.eulerAngles.y;
+            targetRotationY = Mathf.Round(targetRotationY + 90f * Mathf.Sign(input)); // Ensure it snaps to 90-degree increments
+            StopAllCoroutines();
+            StartCoroutine(SmoothRotate(targetRotationY));
         }
 
-        private IEnumerator SmoothRotate()
+        private IEnumerator SmoothRotate(float targetRotationY)
         {
             m_isRotating = true;
-            var initialRotation = transform.rotation;
-            var targetRotation = Quaternion.Euler(0f, m_targetRotationY, 0f);
-            var elapsedTime = 0f;
+            Quaternion initialRotation = transform.rotation;
+            Quaternion targetRotation = Quaternion.Euler(transform.rotation.x, targetRotationY, transform.rotation.z);
+            float elapsedTime = 0f;
 
             while (elapsedTime < 1f)
             {
