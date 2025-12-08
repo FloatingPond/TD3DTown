@@ -1,0 +1,107 @@
+using System.Collections;
+using Input;
+using UnityEngine;
+
+namespace _Project.Scripts.Camera
+{
+    public class CameraController : MonoBehaviour
+    {
+        [Header("References")] 
+        [SerializeField] private UnityEngine.Camera m_camera;
+        [SerializeField] private InputReader m_inputReader;
+        
+        [Header("Values")] 
+        [SerializeField] private float m_translateSpeed = 1f;
+        [SerializeField] private float m_rotateSpeed = 5f;
+        
+        [Header("Zoom")] 
+        [SerializeField] private float m_zoomSpeed = 1f;
+        [SerializeField] private float m_maxZoomIn;
+        [SerializeField] private float m_maxZoomOut;
+        [SerializeField] private float m_defaultZoom;
+
+        private float m_targetRotationY;
+        private bool m_isRotating = false;
+
+        private void OnEnable()
+        {
+            m_inputReader.EnablePlayerActions();
+            m_inputReader.Rotate += Rotate;
+        }
+
+        private void OnDisable()
+        {
+            m_inputReader.Rotate -= Rotate;
+        }
+
+        private void LateUpdate()
+        {
+            Translate(m_inputReader.MoveDirection);
+            Zoom(m_inputReader.CurrentZoom);
+        }
+
+        private void Translate(Vector2 newVal)
+        {
+            // Adjusted translation logic for isometric camera
+            Vector3 horizontalTranslation = new Vector3(-newVal.y, 0f, newVal.y) * m_translateSpeed;
+            Vector3 verticalTranslation = new Vector3(newVal.x, 0f, newVal.x) * m_translateSpeed;
+
+            Vector3 translation = (horizontalTranslation + verticalTranslation) * Time.deltaTime;
+
+            transform.Translate(translation, Space.Self);
+        }
+
+        private void Zoom(float newVal)
+        {
+            var zoomDelta = m_zoomSpeed * newVal;
+            var newOrthographicSize = m_camera.orthographicSize + zoomDelta;
+            newOrthographicSize = Mathf.Clamp(newOrthographicSize, m_maxZoomIn, m_maxZoomOut);
+            m_camera.orthographicSize = newOrthographicSize;
+        }
+
+        private void Rotate(float input)
+        {
+            if (m_isRotating)
+                return;
+
+            m_targetRotationY += 90f * Mathf.Sign(input);
+            m_targetRotationY = Mathf.Round(m_targetRotationY / 90f) * 90f; // Ensure it snaps to 90-degree increments
+            StartCoroutine(SmoothRotate());
+        }
+
+        private IEnumerator SmoothRotate()
+        {
+            m_isRotating = true;
+            var initialRotation = transform.rotation;
+            var targetRotation = Quaternion.Euler(0f, m_targetRotationY, 0f);
+            var elapsedTime = 0f;
+
+            while (elapsedTime < 1f)
+            {
+                transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime);
+                elapsedTime += Time.deltaTime * m_rotateSpeed;
+                yield return null;
+            }
+
+            transform.rotation = targetRotation;
+            m_isRotating = false;
+        }
+
+        public void MoveToPoint(Vector3 point)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Move(point));
+        }
+
+        private IEnumerator Move(Vector3 point)
+        {
+            while (Vector3.Distance(transform.position, point) > 0.001f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, point, m_translateSpeed * Time.deltaTime);
+                yield return null;
+            }
+
+            transform.position = point;
+        }
+    }
+}
