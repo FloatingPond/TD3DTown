@@ -11,5 +11,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a91ddf644fc17af7e8cb982def711cfc, type: 3}
   m_Name: Closest
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.ClosestTurretTargetingStrategy
-  Range: 30
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.Targeting.ClosestTurretTargetingStrategy
+  TurretLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  EntityLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  TargetCount: 1
