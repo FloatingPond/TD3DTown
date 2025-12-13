@@ -8,15 +8,13 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
         [Header("References")]
         [SerializeField] private TurretTargetingStrategy _targetingStrategy;
         [SerializeField] private Transform _objectToRotateTowardsTarget;
-        [SerializeField] private SphereCollider _collider;
-        public SphereCollider Collider => _collider;
         
         [Header("Settings")]
         [SerializeField] private bool _limitToYRotation;
         [SerializeField] private float _rotationSpeed = 10f;
 
         [Header("Debug")]
-        [SerializeField] private List<Transform> _currentTargets;
+        [SerializeField] private List<Transform> _targets;
 
         private void Start()
         {
@@ -25,7 +23,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
 
         private void FixedUpdate()
         {
-            if (_currentTargets.Count > 0)
+            if (_targets.Count > 0)
             {
                 RotateObjectTowardTarget();
             }
@@ -36,11 +34,11 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             if (_objectToRotateTowardsTarget == null)
                 return;
 
-            Vector3 dir = transform.position - _currentTargets[0].position; // inverted (away from target)
+            Vector3 dir = transform.position - _targets[0].position; // inverted (away from target)
 
             if (_limitToYRotation)
             {
-                dir.y = 0f; // only yaw (Y rotation)
+                dir.y = 0f;
             }
 
             if (!(dir.sqrMagnitude > 0.0001f))
@@ -58,12 +56,12 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             if (other.gameObject.layer != LayerMask.NameToLayer("Entity"))
                 return;
 
-            if (!_currentTargets.Contains(other.transform))
+            if (!_targets.Contains(other.transform))
             {
-                _currentTargets.Add(other.transform);
+                _targets.Add(other.transform);
             }
 
-            _targetingStrategy?.GetTargets(_currentTargets);
+            _targetingStrategy?.SelectTarget(_targets);
         }
 
         private void OnTriggerExit(Collider other)
@@ -71,12 +69,12 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             if (other.gameObject.layer != LayerMask.NameToLayer("Entity"))
                 return;
             
-            if (_currentTargets.Contains(other.transform))
+            if (_targets.Contains(other.transform))
             {
-                _currentTargets.Remove(other.transform);
+                _targets.Remove(other.transform);
             }
             
-            _targetingStrategy?.GetTargets(_currentTargets);
+            _targetingStrategy?.SelectTarget(_targets);
         }
     }
 }

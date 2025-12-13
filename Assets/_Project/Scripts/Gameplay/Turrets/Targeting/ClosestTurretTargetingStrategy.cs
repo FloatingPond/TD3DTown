@@ -13,7 +13,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             _turret = turretTargeting;
         }
 
-        public override List<Transform> GetTargets(List<Transform> potentialTargets)
+        public override List<Transform> SelectTarget(List<Transform> potentialTargets)
         {
             potentialTargets.Sort((a, b) =>
                 Vector3.Distance(_turret.transform.position, a.position).CompareTo(Vector3.Distance(_turret.transform.position, b.position)));
