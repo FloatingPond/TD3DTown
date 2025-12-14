@@ -9,7 +9,6 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
         private TurretTargeting _turret;
         public override void Initialize(TurretTargeting turretTargeting)
         {
-            Debug.Log("Initialized Closest Turret Targeting Strategy.");
             _turret = turretTargeting;
         }
 
