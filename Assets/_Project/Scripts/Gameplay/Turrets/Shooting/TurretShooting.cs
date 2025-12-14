@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.Gameplay.Turrets.Targeting;
 using UnityEngine;
 
@@ -9,12 +8,14 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
         [Header("References")]
         [SerializeField] private TurretTargeting _targeting;
         [SerializeField] private TurretShootingStrategy _shootingStrategy;
+        public Transform ShootPoint;
         
         [Header("Settings")]
         [SerializeField] private float _cooldown;
+        
 
         [Header("Debug")]
-        [SerializeField] private bool _hasTarget;
+        public Transform Target;
         [SerializeField] private float _lastShotTime;
 
         private void Start()
@@ -24,17 +25,17 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
 
         private void OnEnable()
         {
-            _targeting.OnTargetCountChanged += b => _hasTarget = b ;
+            _targeting.OnTargetCountChanged += t => Target = t;
         }
 
         private void OnDisable()
         {
-            _targeting.OnTargetCountChanged -= b => _hasTarget = b ;
+            _targeting.OnTargetCountChanged -= t => Target = t;
         }
 
         private void FixedUpdate()
         {
-            if (_hasTarget)
+            if (Target)
             {
                 Shoot();
             }
@@ -42,7 +43,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
 
         private void Shoot()
         {
-            if (Time.time >= _lastShotTime + _cooldown)
+            if (Time.time > _lastShotTime + _cooldown)
             {
                 _shootingStrategy?.Shoot();
                 _lastShotTime = Time.time;

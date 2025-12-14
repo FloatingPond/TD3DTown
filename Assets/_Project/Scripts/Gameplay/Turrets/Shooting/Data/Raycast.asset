@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc022b6eeb43e452f9e5e2c9f460e112, type: 3}
   m_Name: Raycast
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.Shooting.RaycastShootingStrategy
+  BulletTrail: {fileID: 7761876765120575116, guid: 99be4948e3620a05baf1154ea703a88c, type: 3}
