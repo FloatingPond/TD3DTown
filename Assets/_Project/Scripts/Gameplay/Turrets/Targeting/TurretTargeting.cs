@@ -37,18 +37,13 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             if (_objectToRotateTowardsTarget == null)
                 return;
 
-            Vector3 dir = transform.position - _targets[0].position; // inverted (away from target)
+            Vector3 dir = _objectToRotateTowardsTarget.position - _targets[0].position; // toward target
 
-            if (_limitToYRotation)
-            {
-                dir.y = 0f;
-            }
-
-            if (!(dir.sqrMagnitude > 0.0001f))
+            if (dir.sqrMagnitude < 0.0001f)
                 return;
 
             Quaternion targetRotation = Quaternion.LookRotation(dir, Vector3.up);
-                
+
             float t = _rotationSpeed * Time.fixedDeltaTime;
             _objectToRotateTowardsTarget.rotation =
                 Quaternion.Slerp(_objectToRotateTowardsTarget.rotation, targetRotation, t);
