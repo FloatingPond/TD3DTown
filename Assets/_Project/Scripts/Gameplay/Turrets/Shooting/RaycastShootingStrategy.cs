@@ -5,7 +5,7 @@ using UnityServiceLocator;
 
 namespace _Project.Scripts.Gameplay.Turrets.Shooting
 {
-    [CreateAssetMenu(fileName = "Raycast", menuName = "Turret Shooting Strategies/Raycast", order = 0)]
+    [CreateAssetMenu(fileName = "Raycast", menuName = "Turret/Shooting/Raycast", order = 0)]
     public class RaycastShootingStrategy : TurretShootingStrategy
     {
         private TurretShooting _turret;
@@ -75,6 +75,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
             if (hit.transform == _turret.Target)
             {
                 // TODO(piercing): Apply damage/effects here. For piercing, this would happen inside the hit-iteration loop.
+                _turret.OnHit?.Invoke(hit.transform.gameObject);
             }
         }
     }

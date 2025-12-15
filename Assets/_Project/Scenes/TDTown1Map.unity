@@ -1036,6 +1036,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee7acd98c4f334b4080aacb8cb3c2028, type: 3}
       insertIndex: -1
       addedObject: {fileID: 429240769}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee7acd98c4f334b4080aacb8cb3c2028, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 429240771}
   m_SourcePrefab: {fileID: 100100000, guid: ee7acd98c4f334b4080aacb8cb3c2028, type: 3}
 --- !u!1 &429240763 stripped
 GameObject:
@@ -1126,6 +1129,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &429240771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429240763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ff0d49e04b2052d899d8f7ce0b0f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Entities.EntityHealth
+  _currentHealth: 0
+  _maxHealth: 100
 --- !u!1001 &436836767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1210,6 +1227,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06a71a3a6a8923c43b31055712bba802, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1373664427}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06a71a3a6a8923c43b31055712bba802, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1373664429}
   m_SourcePrefab: {fileID: 100100000, guid: 06a71a3a6a8923c43b31055712bba802, type: 3}
 --- !u!4 &442462312 stripped
 Transform:
@@ -2154,7 +2174,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d128fa3b5aa813944b9e7d1af5b6f9e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3723,6 +3743,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1373664429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373664420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ff0d49e04b2052d899d8f7ce0b0f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Entities.EntityHealth
+  _currentHealth: 0
+  _maxHealth: 100
 --- !u!4 &1380733372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 96372b6edf776354ab0a4c7b47a59b07, type: 3}
@@ -4477,6 +4511,48 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96372b6edf776354ab0a4c7b47a59b07, type: 3}
+--- !u!1 &1691495893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2562738216827908703, guid: daf43d5d1001c46c9992b8009b4ed6c0, type: 3}
+  m_PrefabInstance: {fileID: 4735613529160246955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1691495895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2451311381504326239, guid: daf43d5d1001c46c9992b8009b4ed6c0, type: 3}
+  m_PrefabInstance: {fileID: 4735613529160246955}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691495893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08baa3a60fdad6441a1c61b8508e9618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.Shooting.TurretShooting
+--- !u!114 &1691495896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2689814879121543684, guid: daf43d5d1001c46c9992b8009b4ed6c0, type: 3}
+  m_PrefabInstance: {fileID: 4735613529160246955}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691495893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e5b098c94e5e3b0b8c0bda3000e4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.TurretTargeting
+--- !u!114 &1691495898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691495893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358151cccd97cbcf5b3df1a6553c446b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.Functionality.TurretFunctionality
+  _functionalityStrategy: {fileID: 11400000, guid: 1727cc0219626506cb938d5d58bed99e, type: 2}
+  _targeting: {fileID: 1691495896}
+  _shooting: {fileID: 1691495895}
 --- !u!1001 &1699791139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6137,7 +6213,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2562738216827908703, guid: daf43d5d1001c46c9992b8009b4ed6c0, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1691495898}
   m_SourcePrefab: {fileID: 100100000, guid: daf43d5d1001c46c9992b8009b4ed6c0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -16,8 +16,8 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
 
         [Header("Debug")]
         [SerializeField] private List<Transform> _targets;
-
-        public Action<Transform> OnTargetCountChanged;
+        public List<Transform> Targets => _targets;
+        public Action OnTargetCountChanged;
 
         private void Start()
         {
@@ -37,7 +37,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             if (_objectToRotateTowardsTarget == null)
                 return;
 
-            Vector3 dir = _objectToRotateTowardsTarget.position - _targets[0].position; // toward target
+            Vector3 dir = _objectToRotateTowardsTarget.position - _targets[0].position;
 
             if (dir.sqrMagnitude < 0.0001f)
                 return;
@@ -59,7 +59,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
                 _targets.Add(other.transform);
             }
             
-            OnTargetCountChanged?.Invoke(_targets[0]);
+            OnTargetCountChanged?.Invoke();
             _targetingStrategy?.SelectTarget(_targets);
         }
 
@@ -75,12 +75,12 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
 
             if (_targets.Count > 0)
             {
-                OnTargetCountChanged?.Invoke(_targets[0]);
+                OnTargetCountChanged?.Invoke();
                 _targetingStrategy?.SelectTarget(_targets);
                 return;
             }
             
-            OnTargetCountChanged?.Invoke(null);
+            OnTargetCountChanged?.Invoke();
         }
     }
 }

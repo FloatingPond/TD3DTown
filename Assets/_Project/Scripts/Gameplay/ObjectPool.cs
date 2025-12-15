@@ -51,8 +51,8 @@ namespace Gameplay.ObjectPool
         // Called when an item is returned to the pool.
         private void OnRelease(GameObject gameObject)
         {
-            gameObject.transform.position = Vector3.zero;
             gameObject.SetActive(false);
+            gameObject.transform.position = Vector3.zero;
         }
 
         // Called when the pool decides to destroy an item (e.g., above max size).

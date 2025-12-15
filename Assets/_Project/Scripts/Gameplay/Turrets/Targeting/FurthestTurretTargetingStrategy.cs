@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Turrets.Targeting
 {
-    [CreateAssetMenu(fileName = "Furthest", menuName = "Turret Targeting Strategies/Furthest", order = 0)]
+    [CreateAssetMenu(fileName = "Furthest", menuName = "Turret/Targeting/Furthest", order = 0)]
     public class FurthestTurretTargetingStrategy : TurretTargetingStrategy
     {
         private TurretTargeting _turret;

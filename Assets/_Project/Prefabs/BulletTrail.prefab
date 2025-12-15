@@ -155,3 +155,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d4bf61287972dd9be3fdbb3bebae05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Effects.BulletTrailMovement
+  _trailRenderer: {fileID: 5929672344098986887}

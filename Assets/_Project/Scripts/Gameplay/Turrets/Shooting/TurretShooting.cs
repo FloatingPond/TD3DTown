@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Gameplay.Turrets.Targeting;
 using UnityEngine;
 
@@ -12,11 +13,12 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
         
         [Header("Settings")]
         [SerializeField] private float _cooldown;
-        
 
         [Header("Debug")]
         public Transform Target;
-        [SerializeField] private float _lastShotTime;
+        private float _lastShotTime;
+
+        public Action<GameObject> OnHit;
 
         private void Start()
         {
@@ -25,12 +27,12 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
 
         private void OnEnable()
         {
-            _targeting.OnTargetCountChanged += t => Target = t;
+            _targeting.OnTargetCountChanged += () => Target = _targeting.Targets[0];
         }
 
         private void OnDisable()
         {
-            _targeting.OnTargetCountChanged -= t => Target = t;
+            _targeting.OnTargetCountChanged -= () => Target = _targeting.Targets[0];
         }
 
         private void FixedUpdate()
