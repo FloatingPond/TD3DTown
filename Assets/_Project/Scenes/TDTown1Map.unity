@@ -1560,7 +1560,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -20
+  near clip plane: -50
   far clip plane: 10000
   field of view: 60
   orthographic: 1
@@ -4776,7 +4776,7 @@ MonoBehaviour:
   m_rotateSpeed: 5
   m_zoomSpeed: 1
   m_maxZoomIn: 2
-  m_maxZoomOut: 15
+  m_maxZoomOut: 40
   m_defaultZoom: 10
 --- !u!4 &1741095456
 Transform:

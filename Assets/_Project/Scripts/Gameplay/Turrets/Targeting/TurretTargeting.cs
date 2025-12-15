@@ -26,6 +26,17 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
 
         private void FixedUpdate()
         {
+            if (_targets.Count > 0 && (_targets[0] == null || !_targets[0].gameObject.activeInHierarchy))
+            {
+                _targets.RemoveAt(0);
+                OnTargetCountChanged?.Invoke();
+                
+                if (_targets.Count > 0)
+                {
+                    _targetingStrategy?.SelectTarget(_targets);
+                }
+            }
+            
             if (_targets.Count > 0)
             {
                 RotateObjectTowardTarget();

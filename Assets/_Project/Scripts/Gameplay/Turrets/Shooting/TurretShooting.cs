@@ -27,12 +27,17 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
 
         private void OnEnable()
         {
-            _targeting.OnTargetCountChanged += () => Target = _targeting.Targets[0];
+            _targeting.OnTargetCountChanged += OnTargetCountChanged;
         }
 
         private void OnDisable()
         {
-            _targeting.OnTargetCountChanged -= () => Target = _targeting.Targets[0];
+            _targeting.OnTargetCountChanged -= OnTargetCountChanged;
+        }
+
+        private void OnTargetCountChanged()
+        {
+            Target = _targeting.Targets.Count > 0 ? _targeting.Targets[0] : null;
         }
 
         private void FixedUpdate()

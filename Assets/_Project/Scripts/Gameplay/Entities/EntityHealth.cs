@@ -1,5 +1,7 @@
 using System;
+using Gameplay.ObjectPool;
 using UnityEngine;
+using UnityServiceLocator;
 
 namespace _Project.Scripts.Gameplay.Entities
 {
@@ -34,6 +36,8 @@ namespace _Project.Scripts.Gameplay.Entities
             _currentHealth = 0;
             OnHealthChanged?.Invoke(_currentHealth);
             OnDeath?.Invoke();
+            gameObject.SetActive(false);
+            //ServiceLocator.Global.Get<ObjectPool>().ReturnGameObject(gameObject);
         }
 
         public virtual bool Heal(int healAmount)
