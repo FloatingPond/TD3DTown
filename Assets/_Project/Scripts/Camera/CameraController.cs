@@ -1,6 +1,8 @@
 using System.Collections;
+using _Project.Scripts.Gameplay.Grid;
 using Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Camera
 {
@@ -26,11 +28,13 @@ namespace _Project.Scripts.Camera
         {
             m_inputReader.EnablePlayerActions();
             m_inputReader.Rotate += Rotate;
+            m_inputReader.Click += OnClick;
         }
 
         private void OnDisable()
         {
             m_inputReader.Rotate -= Rotate;
+            m_inputReader.Click -= OnClick;
         }
 
         private void LateUpdate()
@@ -102,6 +106,20 @@ namespace _Project.Scripts.Camera
             }
 
             transform.position = point;
+        }
+        
+        private void OnClick()
+        {
+            Debug.Log("Clicked");
+            
+            Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                if (hit.collider.TryGetComponent(out GridTile tile))
+                {
+                    tile.Clicked();
+                }
+            }
         }
     }
 }

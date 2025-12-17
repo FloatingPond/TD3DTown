@@ -18,6 +18,7 @@ namespace Input
         public UnityAction<float> Rotate = delegate {  };
         public UnityAction<Vector2> Look = delegate {  };
         public UnityAction<float> Zoom = delegate {  };
+        public UnityAction Click = delegate { };
         
         private InputSystem_Actions m_inputActions;
         
@@ -64,6 +65,14 @@ namespace Input
         public void OnLook(InputAction.CallbackContext context)
         {
             Look?.Invoke(context.ReadValue<Vector2>());
+        }
+
+        public void OnClick(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Click?.Invoke();
+            }
         }
     }
 }

@@ -7,37 +7,37 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
     public class TurretTargeting : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private TurretTargetingStrategy _targetingStrategy;
-        [SerializeField] private Transform _objectToRotateTowardsTarget;
+        [SerializeField] private TurretTargetingStrategy m_targetingStrategy;
+        [SerializeField] private Transform m_objectToRotateTowardsTarget;
         
         [Header("Settings")]
-        [SerializeField] private bool _limitToYRotation;
-        [SerializeField] private float _rotationSpeed = 10f;
+        [SerializeField] private bool m_limitToYRotation;
+        [SerializeField] private float m_rotationSpeed = 10f;
 
         [Header("Debug")]
-        [SerializeField] private List<Transform> _targets;
-        public List<Transform> Targets => _targets;
+        [SerializeField] private List<Transform> m_targets;
+        public List<Transform> Targets => m_targets;
         public Action OnTargetCountChanged;
 
         private void Start()
         {
-            _targetingStrategy?.Initialize(this);
+            m_targetingStrategy?.Initialize(this);
         }
 
         private void FixedUpdate()
         {
-            if (_targets.Count > 0 && (_targets[0] == null || !_targets[0].gameObject.activeInHierarchy))
+            if (m_targets.Count > 0 && (m_targets[0] == null || !m_targets[0].gameObject.activeInHierarchy))
             {
-                _targets.RemoveAt(0);
+                m_targets.RemoveAt(0);
                 OnTargetCountChanged?.Invoke();
                 
-                if (_targets.Count > 0)
+                if (m_targets.Count > 0)
                 {
-                    _targetingStrategy?.SelectTarget(_targets);
+                    m_targetingStrategy?.SelectTarget(m_targets);
                 }
             }
             
-            if (_targets.Count > 0)
+            if (m_targets.Count > 0)
             {
                 RotateObjectTowardTarget();
             }
@@ -45,19 +45,19 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
 
         private void RotateObjectTowardTarget()
         {
-            if (_objectToRotateTowardsTarget == null)
+            if (m_objectToRotateTowardsTarget == null)
                 return;
 
-            Vector3 dir = _objectToRotateTowardsTarget.position - _targets[0].position;
+            Vector3 dir = m_objectToRotateTowardsTarget.position - m_targets[0].position;
 
             if (dir.sqrMagnitude < 0.0001f)
                 return;
 
             Quaternion targetRotation = Quaternion.LookRotation(dir, Vector3.up);
 
-            float t = _rotationSpeed * Time.fixedDeltaTime;
-            _objectToRotateTowardsTarget.rotation =
-                Quaternion.Slerp(_objectToRotateTowardsTarget.rotation, targetRotation, t);
+            float t = m_rotationSpeed * Time.fixedDeltaTime;
+            m_objectToRotateTowardsTarget.rotation =
+                Quaternion.Slerp(m_objectToRotateTowardsTarget.rotation, targetRotation, t);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -65,13 +65,13 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             if (other.gameObject.layer != LayerMask.NameToLayer("Entity"))
                 return;
 
-            if (!_targets.Contains(other.transform))
+            if (!m_targets.Contains(other.transform))
             {
-                _targets.Add(other.transform);
+                m_targets.Add(other.transform);
             }
             
             OnTargetCountChanged?.Invoke();
-            _targetingStrategy?.SelectTarget(_targets);
+            m_targetingStrategy?.SelectTarget(m_targets);
         }
 
         private void OnTriggerExit(Collider other)
@@ -79,15 +79,15 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             if (other.gameObject.layer != LayerMask.NameToLayer("Entity"))
                 return;
             
-            if (_targets.Contains(other.transform))
+            if (m_targets.Contains(other.transform))
             {
-                _targets.Remove(other.transform);
+                m_targets.Remove(other.transform);
             }
 
-            if (_targets.Count > 0)
+            if (m_targets.Count > 0)
             {
                 OnTargetCountChanged?.Invoke();
-                _targetingStrategy?.SelectTarget(_targets);
+                m_targetingStrategy?.SelectTarget(m_targets);
                 return;
             }
             

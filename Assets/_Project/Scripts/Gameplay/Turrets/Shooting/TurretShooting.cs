@@ -7,37 +7,37 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
     public class TurretShooting : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private TurretTargeting _targeting;
-        [SerializeField] private TurretShootingStrategy _shootingStrategy;
+        [SerializeField] private TurretTargeting m_targeting;
+        [SerializeField] private TurretShootingStrategy m_shootingStrategy;
         public Transform ShootPoint;
         
         [Header("Settings")]
-        [SerializeField] private float _cooldown;
+        [SerializeField] private float m_cooldown;
 
         [Header("Debug")]
         public Transform Target;
-        private float _lastShotTime;
+        private float m_lastShotTime;
 
         public Action<GameObject> OnHit;
 
         private void Start()
         {
-            _shootingStrategy?.Initialize(this);
+            m_shootingStrategy?.Initialize(this);
         }
 
         private void OnEnable()
         {
-            _targeting.OnTargetCountChanged += OnTargetCountChanged;
+            m_targeting.OnTargetCountChanged += OnTargetCountChanged;
         }
 
         private void OnDisable()
         {
-            _targeting.OnTargetCountChanged -= OnTargetCountChanged;
+            m_targeting.OnTargetCountChanged -= OnTargetCountChanged;
         }
 
         private void OnTargetCountChanged()
         {
-            Target = _targeting.Targets.Count > 0 ? _targeting.Targets[0] : null;
+            Target = m_targeting.Targets.Count > 0 ? m_targeting.Targets[0] : null;
         }
 
         private void FixedUpdate()
@@ -50,10 +50,10 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
 
         private void Shoot()
         {
-            if (Time.time > _lastShotTime + _cooldown)
+            if (Time.time > m_lastShotTime + m_cooldown)
             {
-                _shootingStrategy?.Shoot();
-                _lastShotTime = Time.time;
+                m_shootingStrategy?.Shoot();
+                m_lastShotTime = Time.time;
             }
         }
     }

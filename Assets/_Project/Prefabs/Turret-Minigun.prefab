@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
       propertyPath: m_LocalPosition.y
@@ -134,6 +134,9 @@ PrefabInstance:
       addedObject: {fileID: 2451311381504326239}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7801031844670306866}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4908001239226391082}
   m_SourcePrefab: {fileID: 100100000, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
 --- !u!1 &2562738216827908703 stripped
@@ -153,11 +156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e5b098c94e5e3b0b8c0bda3000e4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.TurretTargeting
-  _targetingStrategy: {fileID: 11400000, guid: 6c0fe50d5a1ea37c1ab4aeade5283000, type: 2}
-  _objectToRotateTowardsTarget: {fileID: 3342425274839010775}
-  _limitToYRotation: 0
-  _rotationSpeed: 10
-  _targets: []
+  m_targetingStrategy: {fileID: 11400000, guid: 6c0fe50d5a1ea37c1ab4aeade5283000, type: 2}
+  m_objectToRotateTowardsTarget: {fileID: 3342425274839010775}
+  m_limitToYRotation: 0
+  m_rotationSpeed: 10
+  m_targets: []
 --- !u!114 &2451311381504326239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,12 +173,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08baa3a60fdad6441a1c61b8508e9618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.Shooting.TurretShooting
-  _targeting: {fileID: 2689814879121543684}
-  _shootingStrategy: {fileID: 11400000, guid: fa32a64e0377cac4099548756f05515d, type: 2}
+  m_targeting: {fileID: 2689814879121543684}
+  m_shootingStrategy: {fileID: 11400000, guid: fa32a64e0377cac4099548756f05515d, type: 2}
   ShootPoint: {fileID: 3729811737409299903}
-  _cooldown: 0.5
-  _hasTarget: 0
-  _lastShotTime: 0
+  m_cooldown: 0.5
+  Target: {fileID: 0}
+--- !u!114 &7801031844670306866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2562738216827908703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358151cccd97cbcf5b3df1a6553c446b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.Functionality.TurretFunctionality
+  m_functionalityStrategy: {fileID: 11400000, guid: 1727cc0219626506cb938d5d58bed99e, type: 2}
+  m_targeting: {fileID: 2689814879121543684}
+  m_shooting: {fileID: 2451311381504326239}
 --- !u!135 &4908001239226391082
 SphereCollider:
   m_ObjectHideFlags: 0

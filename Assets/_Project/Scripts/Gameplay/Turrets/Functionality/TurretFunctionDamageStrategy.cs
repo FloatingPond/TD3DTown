@@ -7,10 +7,10 @@ namespace _Project.Scripts.Gameplay.Turrets.Functionality
     public class TurretFunctionDamageStrategy : TurretFunctionalityStrategy
     {
         public int Damage;
-        private TurretFunctionality _turretFunctionality;
+        private TurretFunctionality m_turretFunctionality;
         public override void Initialize(TurretFunctionality turretFunctionality)
         {
-            _turretFunctionality = turretFunctionality;
+            m_turretFunctionality = turretFunctionality;
         }
 
         public override void ExecuteFunction()

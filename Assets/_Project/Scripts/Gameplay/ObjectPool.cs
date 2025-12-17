@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityServiceLocator;
 
-namespace Gameplay.ObjectPool
+namespace _Project.Scripts.Gameplay
 {
     public class ObjectPool : MonoBehaviour
     {

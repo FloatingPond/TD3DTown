@@ -7,28 +7,28 @@ namespace _Project.Scripts.Gameplay.Turrets.Functionality
     public class TurretFunctionality : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private TurretFunctionalityStrategy _functionalityStrategy;
-        [SerializeField] private TurretTargeting _targeting;
-        [SerializeField] private TurretShooting _shooting;
+        [SerializeField] private TurretFunctionalityStrategy m_functionalityStrategy;
+        [SerializeField] private TurretTargeting m_targeting;
+        [SerializeField] private TurretShooting m_shooting;
 
         private void OnEnable()
         {
-            _shooting.OnHit += OnHit;
+            m_shooting.OnHit += OnHit;
         }
 
         private void OnDisable()
         {
-            _shooting.OnHit -= OnHit;
+            m_shooting.OnHit -= OnHit;
         }
 
         public void Start()
         {
-            _functionalityStrategy?.Initialize(this);
+            m_functionalityStrategy?.Initialize(this);
         }
         
         private void OnHit(GameObject hitObject)
         {
-            _functionalityStrategy?.ExecuteFunction(hitObject);
+            m_functionalityStrategy?.ExecuteFunction(hitObject);
         }
     }
 }

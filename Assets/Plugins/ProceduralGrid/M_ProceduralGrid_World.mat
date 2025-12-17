@@ -43,13 +43,13 @@ Material:
     - Checker_Size: 2000
     - Metallic: 0
     - Primary_Grid_Line_Width: 0.4
-    - Primary_Grid_Size: 1000
+    - Primary_Grid_Size: 500
     - Projection_Transition_Contrast: 0
     - Secondary_Grid_Fade_Length: 160
     - Secondary_Grid_Fade_Offset: 0
     - Secondary_Grid_Intensity: 1
-    - Secondary_Grid_Line_Width: 0.01
-    - Secondary_Grid_Size: 500
+    - Secondary_Grid_Line_Width: 0.1
+    - Secondary_Grid_Size: 250
     - Smoothness: 0.5
     - Use_Secondary_Grid: 0
     - _Grid_offset: 0
