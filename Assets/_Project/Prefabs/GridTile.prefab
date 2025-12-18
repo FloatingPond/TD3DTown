@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2118793990680076121}
   - component: {fileID: 8424422812862352748}
   - component: {fileID: 5198701499991469106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GridTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8363065095465214614}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -107,7 +107,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -125,4 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0a3a2850f97da789190775752c6adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Grid.GridTile
-  Occupied: 0
+  m_layersToCheck:
+    serializedVersion: 2
+    m_Bits: 136
+  m_occupiedCheckRadius: 2.5

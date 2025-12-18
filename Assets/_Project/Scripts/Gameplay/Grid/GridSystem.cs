@@ -27,7 +27,7 @@ namespace _Project.Scripts.Gameplay.Grid
 
         public bool IsCurrentSelectedTileOccupied()
         {
-            return m_currentSelected.Occupied;
+            return m_currentSelected.IsOccupied();
         }
     }
 }

@@ -94,6 +94,7 @@ namespace _Project.Scripts.Camera
         public void MoveToPoint(Vector3 point)
         {
             StopAllCoroutines();
+            m_inputReader.DisablePlayerActions();
             StartCoroutine(Move(point));
         }
 
@@ -106,12 +107,11 @@ namespace _Project.Scripts.Camera
             }
 
             transform.position = point;
+            m_inputReader.EnablePlayerActions();
         }
         
         private void OnClick()
         {
-            Debug.Log("Clicked");
-            
             Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
