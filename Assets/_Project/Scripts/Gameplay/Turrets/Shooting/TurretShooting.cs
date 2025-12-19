@@ -20,11 +20,6 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
 
         public Action<GameObject> OnHit;
 
-        private void Start()
-        {
-            m_shootingStrategy?.Initialize(this);
-        }
-
         private void OnEnable()
         {
             m_targeting.OnTargetCountChanged += OnTargetCountChanged;
@@ -38,7 +33,6 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
         public void ChangeStrategy(TurretShootingStrategy newStrategy)
         {
             m_shootingStrategy = newStrategy;
-            m_shootingStrategy?.Initialize(this);
         }
 
         private void OnTargetCountChanged()
@@ -58,7 +52,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
         {
             if (Time.time > m_lastShotTime + m_cooldown)
             {
-                m_shootingStrategy?.Shoot();
+                m_shootingStrategy?.Shoot(this);
                 m_lastShotTime = Time.time;
             }
         }

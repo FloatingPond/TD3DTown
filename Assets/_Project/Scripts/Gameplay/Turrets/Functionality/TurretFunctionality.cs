@@ -21,15 +21,9 @@ namespace _Project.Scripts.Gameplay.Turrets.Functionality
             m_shooting.OnHit -= OnHit;
         }
 
-        public void Start()
-        {
-            m_functionalityStrategy?.Initialize(this);
-        }
-
         public void ChangeStrategy(TurretFunctionalityStrategy newStrategy)
         {
             m_functionalityStrategy = newStrategy;
-            m_functionalityStrategy?.Initialize(this);
         }
 
         private void OnHit(GameObject hitObject)

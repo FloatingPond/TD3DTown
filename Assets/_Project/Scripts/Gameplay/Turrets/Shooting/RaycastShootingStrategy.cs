@@ -7,9 +7,6 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
     [CreateAssetMenu(fileName = "Raycast", menuName = "Turret/Shooting/Raycast", order = 0)]
     public class RaycastShootingStrategy : TurretShootingStrategy
     {
-        private TurretShooting m_turret;
-        private ObjectPool m_objectPool;
-        
         public GameObject BulletTrail;
 
         [Header("Raycast Settings")]
@@ -19,19 +16,13 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
         // TODO(piercing): Add settings for piercing (enabled, maxPierceCount, whether world geometry stops the shot,
         // TODO(piercing): damage falloff per pierce, and/or penetration depth rules).
 
-        public override void Initialize(TurretShooting turretShooting)
+        public override void Shoot(TurretShooting turretShooting)
         {
-            m_turret = turretShooting;
-            m_objectPool = ServiceLocator.Global.Get<ObjectPool>();
-        }
-
-        public override void Shoot()
-        {
-            if (m_turret.ShootPoint == null)
+            if (turretShooting.ShootPoint == null)
                 return;
 
-            Vector3 origin = m_turret.ShootPoint.position;
-            Vector3 dir = m_turret.ShootPoint.forward;
+            Vector3 origin = turretShooting.ShootPoint.position;
+            Vector3 dir = turretShooting.ShootPoint.forward;
 
             Vector3 trailTargetPoint = origin + dir * _range;
 
@@ -61,20 +52,20 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
                 // TODO(piercing): or adjust your trail VFX to accept a polyline instead of a single end point.
             }
 
-            GameObject bulletTrailObject = m_objectPool.GetPooledObject(BulletTrail);
+            GameObject bulletTrailObject = ServiceLocator.Global.Get<ObjectPool>().GetPooledObject(BulletTrail);
             bulletTrailObject.transform.position = origin;
             bulletTrailObject.TryGetComponent(out BulletTrailMovement bulletTrailMovement);
             bulletTrailMovement.SetTarget(trailTargetPoint, 100f);
 
             // TODO(piercing): Move "damage / hit reaction" logic into a dedicated method/service so
             // TODO(piercing): the non-pierce and pierce paths can share it (ApplyHit(hit)).
-            if (!hasHit || m_turret.Target == null)
+            if (!hasHit || turretShooting.Target == null)
                 return;
 
-            if (hit.transform == m_turret.Target)
+            if (hit.transform == turretShooting.Target)
             {
                 // TODO(piercing): Apply damage/effects here. For piercing, this would happen inside the hit-iteration loop.
-                m_turret.OnHit?.Invoke(hit.transform.gameObject);
+                turretShooting.OnHit?.Invoke(hit.transform.gameObject);
             }
         }
     }

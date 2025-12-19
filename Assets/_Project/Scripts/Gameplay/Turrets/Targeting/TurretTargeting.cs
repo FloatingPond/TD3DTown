@@ -20,15 +20,9 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
         public List<Transform> Targets => m_targets;
         public Action OnTargetCountChanged;
 
-        private void Start()
-        {
-            m_targetingStrategy?.Initialize(this);
-        }
-
         public void ChangeStrategy(TurretTargetingStrategy newStrategy)
         {
             m_targetingStrategy = newStrategy;
-            m_targetingStrategy?.Initialize(this);
         }
 
         public void SetTargetingRadius(float radius)
@@ -45,7 +39,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
                 
                 if (m_targets.Count > 0)
                 {
-                    m_targetingStrategy?.SelectTarget(m_targets);
+                    m_targetingStrategy?.SelectTarget(this, m_targets);
                 }
             }
             
@@ -83,7 +77,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             }
             
             OnTargetCountChanged?.Invoke();
-            m_targetingStrategy?.SelectTarget(m_targets);
+            m_targetingStrategy?.SelectTarget(this , m_targets);
         }
 
         private void OnTriggerExit(Collider other)
@@ -99,7 +93,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             if (m_targets.Count > 0)
             {
                 OnTargetCountChanged?.Invoke();
-                m_targetingStrategy?.SelectTarget(m_targets);
+                m_targetingStrategy?.SelectTarget(this, m_targets);
                 return;
             }
             
