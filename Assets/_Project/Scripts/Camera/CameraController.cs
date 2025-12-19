@@ -113,7 +113,7 @@ namespace _Project.Scripts.Camera
         private void OnClick()
         {
             Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Construction")))
             {
                 if (hit.collider.TryGetComponent(out GridTile tile))
                 {

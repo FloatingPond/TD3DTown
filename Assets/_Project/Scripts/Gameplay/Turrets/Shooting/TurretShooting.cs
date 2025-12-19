@@ -35,6 +35,12 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
             m_targeting.OnTargetCountChanged -= OnTargetCountChanged;
         }
 
+        public void ChangeStrategy(TurretShootingStrategy newStrategy)
+        {
+            m_shootingStrategy = newStrategy;
+            m_shootingStrategy?.Initialize(this);
+        }
+
         private void OnTargetCountChanged()
         {
             Target = m_targeting.Targets.Count > 0 ? m_targeting.Targets[0] : null;

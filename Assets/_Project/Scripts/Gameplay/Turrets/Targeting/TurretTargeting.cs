@@ -9,6 +9,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
         [Header("References")]
         [SerializeField] private TurretTargetingStrategy m_targetingStrategy;
         [SerializeField] private Transform m_objectToRotateTowardsTarget;
+        [SerializeField] private SphereCollider m_collider;
         
         [Header("Settings")]
         [SerializeField] private bool m_limitToYRotation;
@@ -22,6 +23,17 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
         private void Start()
         {
             m_targetingStrategy?.Initialize(this);
+        }
+
+        public void ChangeStrategy(TurretTargetingStrategy newStrategy)
+        {
+            m_targetingStrategy = newStrategy;
+            m_targetingStrategy?.Initialize(this);
+        }
+
+        public void SetTargetingRadius(float radius)
+        {
+            m_collider.radius = radius;
         }
 
         private void FixedUpdate()

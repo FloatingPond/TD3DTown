@@ -12,10 +12,8 @@ namespace _Project.Scripts.Gameplay.Construction
         [SerializeField] private InputReader m_inputReader;
         [SerializeField] private UnityEngine.Camera m_camera;
         
-        
         private void OnEnable()
         {
-            //TODO: Snap the preview to grid tiles when hovering over them
             m_inputReader.Point += OnPoint;
         }
 
@@ -35,7 +33,6 @@ namespace _Project.Scripts.Gameplay.Construction
                 return;
 
             transform.position = tile.transform.position;
-
             m_meshRenderer.material.color = !tile.IsOccupied() ? m_availableColor : m_unavailableColor;
         }
     }

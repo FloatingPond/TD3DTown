@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d674de7efb18da8d8e7e05f58aeebec, type: 3}
+  m_Name: MinigunTurret
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.TurretData
+  TargetingStrategy: {fileID: 11400000, guid: 6c0fe50d5a1ea37c1ab4aeade5283000, type: 2}
+  ShootingStrategy: {fileID: 11400000, guid: fa32a64e0377cac4099548756f05515d, type: 2}
+  FunctionalityStrategy: {fileID: 11400000, guid: 1727cc0219626506cb938d5d58bed99e, type: 2}
+  TargetingRadius: 20
+  ModelPrefab: {fileID: 2562738216827908703, guid: daf43d5d1001c46c9992b8009b4ed6c0, type: 3}
