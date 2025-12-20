@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Project.Scripts.Gameplay.Turrets.Data;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Turrets.Targeting
@@ -14,20 +15,23 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
         [Header("Settings")]
         [SerializeField] private bool m_limitToYRotation;
         [SerializeField] private float m_rotationSpeed = 10f;
-
+        [SerializeField] private float m_minShootingAngle;
+        
         [Header("Debug")]
         [SerializeField] private List<Transform> m_targets;
         public List<Transform> Targets => m_targets;
         public Action OnTargetCountChanged;
+        public bool CanShoot;
 
         public void ChangeStrategy(TurretTargetingStrategy newStrategy)
         {
             m_targetingStrategy = newStrategy;
         }
 
-        public void SetTargetingRadius(float radius)
+        public void SetTurretData(TurretData data)
         {
-            m_collider.radius = radius;
+            m_collider.radius = data.TargetingRadius;
+            m_minShootingAngle = data.TargetingMinShootingAngle;
         }
 
         private void FixedUpdate()
@@ -49,6 +53,10 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             }
         }
 
+        /// <summary>
+        /// Angle calculations are backwards due to model pivots.
+        /// TODO: Ideally in the future we can fix the models and have the calculations the correct way round. 
+        /// </summary>
         private void RotateObjectTowardTarget()
         {
             if (m_objectToRotateTowardsTarget == null)
@@ -64,6 +72,11 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             float t = m_rotationSpeed * Time.fixedDeltaTime;
             m_objectToRotateTowardsTarget.rotation =
                 Quaternion.Slerp(m_objectToRotateTowardsTarget.rotation, targetRotation, t);
+            
+            Vector3 directionToTarget = m_objectToRotateTowardsTarget.position - m_targets[0].position;
+            float angle = Vector3.Angle(m_objectToRotateTowardsTarget.forward, directionToTarget);
+            
+            CanShoot = angle < m_minShootingAngle;
         }
 
         private void OnTriggerEnter(Collider other)

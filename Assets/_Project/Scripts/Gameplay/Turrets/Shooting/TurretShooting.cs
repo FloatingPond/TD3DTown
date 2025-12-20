@@ -42,7 +42,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
 
         private void FixedUpdate()
         {
-            if (Target)
+            if (Target && m_targeting.CanShoot)
             {
                 Shoot();
             }

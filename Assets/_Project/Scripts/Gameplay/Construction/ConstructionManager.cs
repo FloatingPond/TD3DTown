@@ -34,7 +34,7 @@ namespace _Project.Scripts.Gameplay.Construction
 
             if (turret.TryGetComponent(out TurretTargeting turretTargeting))
             {
-                turretTargeting.SetTargetingRadius(data.TargetingRadius);
+                turretTargeting.SetTurretData(data);
                 turretTargeting.ChangeStrategy(data.TargetingStrategy);
             }
 

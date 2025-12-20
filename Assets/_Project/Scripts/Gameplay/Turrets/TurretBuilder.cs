@@ -11,10 +11,9 @@ namespace _Project.Scripts.Gameplay.Turrets
         [Header("References")] 
         [SerializeField] private Collider m_collider;
         [SerializeField] private List<MeshRenderer> m_meshRenderers;
-
-        [Header("Debug")]
-        [SerializeField] private float m_progress = 1;
-        [SerializeField] private float m_timeToConstruct;
+        
+        private float m_progress = 1;
+        private float m_timeToConstruct;
         
         public void BeginConstruction(TurretData turretData)
         {
@@ -30,7 +29,6 @@ namespace _Project.Scripts.Gameplay.Turrets
             enabled = true;
             foreach (MeshRenderer meshRenderer in m_meshRenderers)
             {
-                meshRenderer.sharedMaterial.SetFloat(Opacity, m_progress);
                 meshRenderer.material.SetFloat(Opacity, m_progress);
             }
         }
@@ -47,15 +45,14 @@ namespace _Project.Scripts.Gameplay.Turrets
                 m_progress = -1f;
             }
 
-            foreach (MeshRenderer meshRenderer in m_meshRenderers)
-            {
-                meshRenderer.sharedMaterial.SetFloat(Opacity, m_progress);
-                meshRenderer.material.SetFloat(Opacity, m_progress);
-            }
-            
             if (m_progress <= -1)
             {
                 CompleteConstruction();
+            }
+            
+            foreach (MeshRenderer meshRenderer in m_meshRenderers)
+            {
+                meshRenderer.material.SetFloat(Opacity, m_progress);
             }
         }
 
@@ -63,7 +60,6 @@ namespace _Project.Scripts.Gameplay.Turrets
         {
             foreach (MeshRenderer meshRenderer in m_meshRenderers)
             {
-                meshRenderer.sharedMaterial.SetFloat(Opacity, -1);
                 meshRenderer.material.SetFloat(Opacity, -1);
             }
             m_collider.enabled = true;

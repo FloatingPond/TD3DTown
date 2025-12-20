@@ -16,5 +16,6 @@ MonoBehaviour:
   ShootingStrategy: {fileID: 11400000, guid: fa32a64e0377cac4099548756f05515d, type: 2}
   FunctionalityStrategy: {fileID: 11400000, guid: 1727cc0219626506cb938d5d58bed99e, type: 2}
   TargetingRadius: 20
+  TargetingMinShootingAngle: 10
   ModelPrefab: {fileID: 2562738216827908703, guid: daf43d5d1001c46c9992b8009b4ed6c0, type: 3}
   TimeToConstruct: 5
