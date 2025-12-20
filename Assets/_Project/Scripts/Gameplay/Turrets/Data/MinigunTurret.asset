@@ -17,3 +17,4 @@ MonoBehaviour:
   FunctionalityStrategy: {fileID: 11400000, guid: 1727cc0219626506cb938d5d58bed99e, type: 2}
   TargetingRadius: 20
   ModelPrefab: {fileID: 2562738216827908703, guid: daf43d5d1001c46c9992b8009b4ed6c0, type: 3}
+  TimeToConstruct: 5

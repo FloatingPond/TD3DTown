@@ -13,5 +13,6 @@ namespace _Project.Scripts.Gameplay.Turrets.Data
         public TurretFunctionalityStrategy FunctionalityStrategy;
         public float TargetingRadius;
         public GameObject ModelPrefab;
+        public float TimeToConstruct;
     }
 }

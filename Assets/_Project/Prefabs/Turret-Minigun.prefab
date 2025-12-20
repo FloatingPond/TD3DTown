@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1636243613205584594, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f831c397658583529b9852c3225e05ab, type: 2}
     - target: {fileID: 86530540576195289, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -111,10 +115,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2389573678448340813, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f831c397658583529b9852c3225e05ab, type: 2}
     - target: {fileID: 4002270085009964559, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5481282258409881041, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f831c397658583529b9852c3225e05ab, type: 2}
     - target: {fileID: 7883376617097787700, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -126,6 +138,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3729811737409299903}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3141783043392194347}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2689814879121543684}
@@ -142,6 +157,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7958855298416238936}
   m_SourcePrefab: {fileID: 100100000, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
+--- !u!23 &1042791795523330115 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2389573678448340813, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
+  m_PrefabInstance: {fileID: 3409723020012769038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1791076312134562049 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4002270085009964559, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
@@ -173,6 +193,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
   m_PrefabInstance: {fileID: 3409723020012769038}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3141783043392194347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2562738216827908703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c800fcefee3554b9eac2f05834af7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Gameplay.Turrets.TurretBuilder
+  m_collider: {fileID: 4908001239226391082}
+  m_meshRenderers:
+  - {fileID: 1042791795523330115}
+  - {fileID: 5051666725392902688}
+  - {fileID: 7151901102990865119}
 --- !u!114 &2689814879121543684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,5 +284,15 @@ SphereCollider:
 --- !u!4 &3342425274839010775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 86530540576195289, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
+  m_PrefabInstance: {fileID: 3409723020012769038}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5051666725392902688 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1636243613205584594, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
+  m_PrefabInstance: {fileID: 3409723020012769038}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7151901102990865119 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5481282258409881041, guid: a3cdb076eb14e5b4bab6a7b473901726, type: 3}
   m_PrefabInstance: {fileID: 3409723020012769038}
   m_PrefabAsset: {fileID: 0}

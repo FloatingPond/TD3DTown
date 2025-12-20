@@ -35,6 +35,7 @@ namespace _Project.Scripts.Gameplay.Entities
             OnHealthChanged?.Invoke(m_currentHealth);
             OnDeath?.Invoke();
             gameObject.SetActive(false);
+            //TODO: Return this object to the pool
             //ServiceLocator.Global.Get<ObjectPool>().ReturnGameObject(gameObject);
         }
 

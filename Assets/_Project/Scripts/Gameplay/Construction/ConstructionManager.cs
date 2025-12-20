@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _Project.Scripts.Gameplay.Turrets;
 using _Project.Scripts.Gameplay.Turrets.Data;
 using _Project.Scripts.Gameplay.Turrets.Functionality;
 using _Project.Scripts.Gameplay.Turrets.Shooting;
@@ -25,7 +26,12 @@ namespace _Project.Scripts.Gameplay.Construction
             //TODO: If (not enough resources) return false
             
             GameObject turret = Instantiate(data.ModelPrefab, worldPosition, Quaternion.identity);
-            
+
+            if (turret.TryGetComponent(out TurretBuilder turretBuilder))
+            {
+                turretBuilder.BeginConstruction(data);
+            }
+
             if (turret.TryGetComponent(out TurretTargeting turretTargeting))
             {
                 turretTargeting.SetTargetingRadius(data.TargetingRadius);
