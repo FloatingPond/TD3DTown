@@ -53,9 +53,8 @@ namespace _Project.Scripts.Gameplay.Turrets.Shooting
             }
 
             GameObject bulletTrailObject = ServiceLocator.Global.Get<ObjectPool>().GetPooledObject(BulletTrail);
-            bulletTrailObject.transform.position = origin;
             bulletTrailObject.TryGetComponent(out BulletTrailMovement bulletTrailMovement);
-            bulletTrailMovement.SetTarget(trailTargetPoint, 100f);
+            bulletTrailMovement.SetTarget(origin, trailTargetPoint, 100f);
 
             // TODO(piercing): Move "damage / hit reaction" logic into a dedicated method/service so
             // TODO(piercing): the non-pierce and pierce paths can share it (ApplyHit(hit)).

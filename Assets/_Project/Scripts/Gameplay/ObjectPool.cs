@@ -52,7 +52,6 @@ namespace _Project.Scripts.Gameplay
         private void OnRelease(GameObject gameObject)
         {
             gameObject.SetActive(false);
-            gameObject.transform.position = Vector3.zero;
         }
 
         // Called when the pool decides to destroy an item (e.g., above max size).

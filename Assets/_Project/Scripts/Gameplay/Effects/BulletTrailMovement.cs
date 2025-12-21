@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityServiceLocator;
 
@@ -20,13 +19,22 @@ namespace _Project.Scripts.Gameplay.Effects
 
         private void OnEnable()
         {
-            _trailRenderer.emitting = true;
+            _trailRenderer.emitting = false;
         }
 
-        public void SetTarget(Vector3 target, float speed)
+        private void OnDisable()
         {
+            _trailRenderer.emitting = false;
+        }
+
+        public void SetTarget(Vector3 startPosition, Vector3 target, float speed)
+        {
+            transform.position = startPosition;
             _target = target;
             _speed = speed;
+            
+            _trailRenderer.Clear();
+            _trailRenderer.emitting = true;
         }
 
         private void FixedUpdate()
