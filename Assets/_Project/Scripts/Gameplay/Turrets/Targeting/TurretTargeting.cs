@@ -62,7 +62,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             if (m_objectToRotateTowardsTarget == null)
                 return;
 
-            Vector3 dir = m_objectToRotateTowardsTarget.position - m_targets[0].position;
+            Vector3 dir = m_targets[0].position - m_objectToRotateTowardsTarget.position;
 
             if (dir.sqrMagnitude < 0.0001f)
                 return;
@@ -73,7 +73,7 @@ namespace _Project.Scripts.Gameplay.Turrets.Targeting
             m_objectToRotateTowardsTarget.rotation =
                 Quaternion.Slerp(m_objectToRotateTowardsTarget.rotation, targetRotation, t);
             
-            Vector3 directionToTarget = m_objectToRotateTowardsTarget.position - m_targets[0].position;
+            Vector3 directionToTarget = m_targets[0].position - m_objectToRotateTowardsTarget.position;
             float angle = Vector3.Angle(m_objectToRotateTowardsTarget.forward, directionToTarget);
             
             CanShoot = angle < m_minShootingAngle;
